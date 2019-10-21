@@ -26,16 +26,33 @@ void Car::API()
 
 void Car::simulatorInput(carData *myCar)
 {
-    cout << "what kind of car are you driving" << endl;
+    cout << "What kind of car are you driving?" << endl;
     cin >> myCar->name;
 
-    cout << "how tough is the terrain (1-3)" << endl;
-    cin >> myCar->terrain;
+    cout << "How tough is the terrain? (1-3)" << endl;
+    while(true){
+        cin >> myCar->terrain;
+        if(myCar->terrain < 1 || myCar->terrain > 3){
+            cout << "Please choose a number between 1-3" << endl;
+            continue;
+        }else{
+            break;
+        }
+    }
 
-    cout << "how fast are you driving (1-3)" << endl;
-    cin >> myCar->speed;
 
-    cout << "How much fuel is in your tank" << endl;
+    cout << "How fast are you driving? (1-3)" << endl;
+    while(true){
+        cin >> myCar->speed;
+        if(myCar->speed < 1 || myCar->speed > 3){
+            cout << "Please choose a number between 1-3" << endl;
+            continue;
+        }else{
+            break;
+        }
+    }
+
+    cout << "How much fuel is in your tank?" << endl;
     cin >> myCar->tankLevel;
 
     if (myCar->speed == 1)
@@ -58,12 +75,12 @@ void Car::runSimulator(carData *myCar)
     {
         if (myCar->tankLevel <= 0)
         {
-            cout << "your " << myCar->name << " is out of fuel" << endl;
+            cout << "Your " << myCar->name << " is out of fuel." << endl;
             break;
         }
         else
         {
-            cout << "you have " << myCar->tankLevel << "% fuel left" << endl;
+            cout << "You have " << myCar->tankLevel << "% fuel left." << endl;
             myCar->tankLevel = myCar->tankLevel - (myCar->terrain * myCar->speed);
         }
     }
